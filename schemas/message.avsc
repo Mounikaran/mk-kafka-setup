@@ -1,0 +1,56 @@
+{
+  "type": "record",
+  "name": "MessageRecord",
+  "fields": [
+    {
+      "name": "event",
+      "type": ["null", "string"],
+      "default": ""
+    },
+    {
+      "name": "msisdn",
+      "type": ["null", "string"],
+      "default": ""
+    },
+    {
+      "name": "shortCode",
+      "type": ["null", "string"],
+      "default": ""
+    },
+    {
+      "name": "sourceId",
+      "type": ["null", "string"],
+      "default": ""
+    },
+    {
+      "name": "sourceName",
+      "type": ["null", "string"],
+      "default": ""
+    },
+    {
+      "name": "referenceId",
+      "type": ["null", "string"],
+      "default": ""
+    },
+    {
+      "name": "timestamp",
+      "type": ["null", "string"],
+      "default": ""
+    },
+    {
+      "name": "message",
+      "type": ["null", "string"],
+      "default": ""
+    },
+    {
+      "name": "campaignId",
+      "type": ["null", "string"],
+      "default": ""
+    },
+    {
+      "name": "campaignName",
+      "type": ["null", "string"],
+      "default": ""
+    }
+  ]
+}

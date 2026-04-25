@@ -1,16 +1,15 @@
-version: '3.8'
 services:
   zookeeper:
     image: wurstmeister/zookeeper:latest
     ports:
-      - "2182:2182"
+      - "2182:2181"
     restart: always
     
     networks:
       - kafka-network
   
   kafka:
-    image: confluentinc/cp-kafka:latest
+    image: confluentinc/cp-kafka:7.4.0
     depends_on:
       - zookeeper
     ports:
@@ -25,15 +24,34 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_DEFAULT_REPLICATION_FACTOR: 1
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      # Message size configurations (2GB limit)
+      KAFKA_MESSAGE_MAX_BYTES: 2147483647
+      KAFKA_REPLICA_FETCH_MAX_BYTES: 2147483647
+      KAFKA_LOG_SEGMENT_BYTES: 2147483647
+      KAFKA_FETCH_MESSAGE_MAX_BYTES: 2147483647
+      KAFKA_SOCKET_RECEIVE_BUFFER_BYTES: 104857600
+      KAFKA_SOCKET_SEND_BUFFER_BYTES: 104857600
 
     networks:
       - kafka-network
       - core-backend-service_default
+      - smart-service_app_net
+      # - ticketing-backend-service_default
+      - kafka-invite-service_default
+      - analytics-dashboard-backend-service_default
 
 networks:
   kafka-network:
     driver: bridge
   core-backend-service_default:
     external: true
+  kafka-invite-service_default:
+    external: true
+  # ticketing-backend-service_default:
+  #   external: true
+  analytics-dashboard-backend-service_default:
+    external: true
+  smart-service_app_net:
+    external: true
 
-# use kafak:9093 in other networks to access this kafka
+# use kafka:9093 in other networks to access this kafka

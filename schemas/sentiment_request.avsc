@@ -1,0 +1,91 @@
+{
+  "type": "record",
+  "name": "SentimentAnalyse",
+  "fields": [
+    {
+      "name": "availabilityZone",
+      "type": "string",
+      "doc": "availability zone"
+    },
+    {
+      "name": "org",
+      "type": "string",
+      "doc": "organisation unique uuid"
+    },
+    {
+      "name": "uuid",
+      "type": {
+        "type": "record",
+        "name": "uuid",
+        "fields": [
+          {
+            "name": "surveyId",
+            "type": "string",
+            "doc": "survey unique uuid"
+          },
+          {
+            "name": "responseId",
+            "type": "string",
+            "doc": "response unique uuid"
+          },
+          {
+            "name": "questionId",
+            "type": "string",
+            "doc": "question unique uuid"
+          },
+          {
+            "name": "rowId",
+            "type": "string",
+            "doc": "row unique uuid"
+          },
+          {
+            "name": "colId",
+            "type": "string",
+            "doc": "col unique uuid"
+          }
+        ]
+      },
+      "doc": "Unique identifier"
+    },
+    {
+      "name": "mongoId",
+      "type": {
+        "type": "record",
+        "name": "mongoId",
+        "fields": [
+          {
+            "name": "surveyId",
+            "type": "string",
+            "doc": "survey unique mongo_id"
+          },
+          {
+            "name": "responseId",
+            "type": "string",
+            "doc": "response unique mongo_id"
+          },
+          {
+            "name": "questionId",
+            "type": "string",
+            "doc": "question unique mongo_id"
+          },
+          {
+            "name": "rowId",
+            "type": "string",
+            "doc": "row unique mongo_id"
+          },
+          {
+            "name": "colId",
+            "type": "string",
+            "doc": "col unique mongo_id"
+          }
+        ]
+      },
+      "doc": "MongoDB identifier"
+    },
+    {
+      "name": "text",
+      "type": "string",
+      "doc": "Survey response data"
+    }
+  ]
+}

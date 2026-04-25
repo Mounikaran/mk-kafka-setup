@@ -1,11 +1,12 @@
 from confluent_kafka import Consumer
+from json import loads
 
 from config import consumer_config
 
 # Create Consumer instance
 consumer = Consumer(consumer_config)
 
-topics = ["mk_topic"]
+topics = ["kcb-invite-messages", "mk_topic"]
 
 # Subscribe to topics
 consumer.subscribe(topics)
@@ -20,8 +21,15 @@ def consume_messages():
                 if message.error():
                     print(f"Consumer error : {message.error()}")
                 else:
-                    raw_message = message.value()
-                    print("Message: ", raw_message)
+                    print("\n\nMessage received", message.topic())
+                    print("Message: ", message.value())
+                    # Decode bytes to string and parse JSON to dict
+                    # raw_message = message.value().decode('utf-8')
+                    # dict_message = loads(message.value())
+                    # print("Message as dictionary: ", dict_message)
+                    # print("Message key: ", dict_message['key'])
+                    # print("Message key: ", dict_message['key'])
+                    # print("Message value: ", dict_message['value'])
 
     except KeyboardInterrupt:
         pass
